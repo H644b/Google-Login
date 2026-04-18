@@ -86,6 +86,47 @@
       font-weight: 400;
     }
 
+    /* ── Account chip ── */
+    .account-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #dadce0;
+      border-radius: 24px;
+      padding: 6px 12px 6px 6px;
+      font-size: 14px;
+      color: #202124;
+      text-decoration: none;
+      margin-top: 4px;
+      cursor: pointer;
+      background: none;
+      font-family: "Roboto", sans-serif;
+      transition: background 0.15s;
+    }
+
+    .account-chip:hover {
+      background: #f8f9fa;
+    }
+
+    .account-chip .avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #1a73e8;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .account-chip .chevron {
+      margin-left: 2px;
+      color: #5f6368;
+    }
+
     /* ── Form ── */
     .form {
       margin-top: 28px;
@@ -166,7 +207,35 @@
       display: block;
     }
 
-    /* Forgot email link */
+    /* Show-password toggle */
+    .password-wrapper {
+      position: relative;
+    }
+
+    .password-wrapper input {
+      padding-right: 48px !important;
+    }
+
+    .toggle-pw {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px 12px;
+      color: #5f6368;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .toggle-pw:hover {
+      color: #202124;
+    }
+
+    /* Forgot link */
     .forgot-link {
       display: inline-block;
       margin-top: 8px;
@@ -283,6 +352,15 @@
       text-decoration: underline;
     }
 
+    /* ── Step visibility ── */
+    .step {
+      display: none;
+    }
+
+    .step.active {
+      display: block;
+    }
+
     /* ── Responsive ── */
     @media (max-width: 520px) {
       main {
@@ -316,52 +394,119 @@
 
   <main>
     <div class="card" role="main">
-      <!-- Card header -->
-      <div class="card-header">
-        <!-- Coloured Google "G" logo -->
-        <div class="google-logo" aria-hidden="true">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="40" height="40">
-            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-            <path fill="none" d="M0 0h48v48H0z"/>
-          </svg>
+
+      <!-- ── Step 1: Email ── -->
+      <div class="step active" id="step-email">
+        <div class="card-header">
+          <!-- Coloured Google "G" logo -->
+          <div class="google-logo" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="40" height="40">
+              <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+              <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+              <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+              <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+              <path fill="none" d="M0 0h48v48H0z"/>
+            </svg>
+          </div>
+          <h1>Sign in</h1>
+          <p>Use your Google Account</p>
         </div>
 
-        <h1>Sign in</h1>
-        <p>Use your Google Account</p>
+        <form class="form" id="login-form" novalidate>
+          <div class="text-field" id="email-field">
+            <input
+              type="text"
+              id="email"
+              name="email"
+              placeholder=" "
+              autocomplete="username"
+              aria-label="Email or phone"
+            />
+            <label for="email">Email or phone</label>
+          </div>
+          <span class="error-msg" id="email-error" role="alert">Enter an email or phone number</span>
+
+          <a href="#" class="forgot-link">Forgot email?</a>
+
+          <p class="guest-notice">
+            Not your computer? Use a Private Window to sign in.
+            <a href="#" tabindex="0">Learn more</a>
+          </p>
+
+          <div class="card-footer">
+            <button type="button" class="btn btn-text" id="create-account-btn">
+              Create account
+            </button>
+            <button type="submit" class="btn btn-contained">Next</button>
+          </div>
+        </form>
       </div>
 
-      <!-- Form -->
-      <form class="form" id="login-form" novalidate>
-        <div class="text-field" id="email-field">
-          <input
-            type="text"
-            id="email"
-            name="email"
-            placeholder=" "
-            autocomplete="username"
-            aria-label="Email or phone"
-          />
-          <label for="email">Email or phone</label>
-        </div>
-        <span class="error-msg" id="email-error" role="alert">Enter an email or phone number</span>
+      <!-- ── Step 2: Password ── -->
+      <div class="step" id="step-password">
+        <div class="card-header">
+          <div class="google-logo" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="40" height="40">
+              <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+              <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+              <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+              <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+              <path fill="none" d="M0 0h48v48H0z"/>
+            </svg>
+          </div>
 
-        <a href="#" class="forgot-link">Forgot email?</a>
+          <h1>Welcome</h1>
 
-        <p class="guest-notice">
-          Not your computer? Use a Private Window to sign in.
-          <a href="#" tabindex="0">Learn more</a>
-        </p>
-
-        <div class="card-footer">
-          <button type="button" class="btn btn-text" id="create-account-btn">
-            Create account
+          <!-- Account chip showing the entered email -->
+          <button type="button" class="account-chip" id="account-chip" aria-label="Change account">
+            <span class="avatar" id="avatar-initial">?</span>
+            <span id="account-email">Loading…</span>
+            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7 10l5 5 5-5z"/>
+            </svg>
           </button>
-          <button type="submit" class="btn btn-contained">Next</button>
         </div>
-      </form>
+
+        <form class="form" id="pw-form" novalidate>
+          <div class="text-field password-wrapper" id="pw-field">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder=" "
+              autocomplete="current-password"
+              aria-label="Enter your password"
+            />
+            <label for="password">Enter your password</label>
+            <button
+              type="button"
+              class="toggle-pw"
+              id="toggle-pw"
+              aria-label="Show password"
+            >
+              <!-- Eye icon -->
+              <svg id="icon-show" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+              </svg>
+              <!-- Eye-off icon -->
+              <svg id="icon-hide" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="display:none">
+                <path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46A11.804 11.804 0 0 0 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/>
+              </svg>
+            </button>
+          </div>
+          <span class="error-msg" id="pw-error" role="alert">Enter a password</span>
+
+          <a href="#" class="forgot-link">Forgot password?</a>
+
+          <div class="card-footer">
+            <button type="button" class="btn btn-text" id="back-btn">
+              Back
+            </button>
+            <button type="submit" class="btn btn-contained">Next</button>
+          </div>
+        </form>
+      </div>
+
     </div>
   </main>
 
@@ -385,18 +530,25 @@
   </footer>
 
   <script>
-    const form = document.getElementById("login-form");
-    const emailInput = document.getElementById("email");
-    const emailField = document.getElementById("email-field");
-    const emailErrorEl = document.getElementById("email-error");
-
-    // Basic email/phone format check: non-empty and contains @ with something on each side,
-    // or is a non-empty phone-like string (digits, spaces, +, -, parentheses).
+    // ── Shared helpers ──
     function isValidEmailOrPhone(val) {
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val) || /^[+\d][\d\s\-()+]{6,}$/.test(val);
     }
 
-    form.addEventListener("submit", function (e) {
+    function showStep(stepId) {
+      document.querySelectorAll(".step").forEach(function (el) {
+        el.classList.remove("active");
+      });
+      document.getElementById(stepId).classList.add("active");
+    }
+
+    // ── Step 1: Email ──
+    const loginForm = document.getElementById("login-form");
+    const emailInput = document.getElementById("email");
+    const emailField = document.getElementById("email-field");
+    const emailErrorEl = document.getElementById("email-error");
+
+    loginForm.addEventListener("submit", function (e) {
       e.preventDefault();
       const val = emailInput.value.trim();
 
@@ -414,8 +566,13 @@
         return;
       }
 
-      // Navigate to password page
-      window.location.href = "password.html?email=" + encodeURIComponent(val);
+      // Populate account chip and switch to password step
+      document.getElementById("account-email").textContent = val;
+      document.getElementById("avatar-initial").textContent = val.charAt(0).toUpperCase();
+      document.getElementById("password").value = "";
+      document.getElementById("pw-field").classList.remove("error");
+      showStep("step-password");
+      document.getElementById("password").focus();
     });
 
     emailInput.addEventListener("input", function () {
@@ -424,9 +581,56 @@
       }
     });
 
-    // "Create account" navigates to "#" as a placeholder (static demo only).
     document.getElementById("create-account-btn").addEventListener("click", function () {
       window.location.href = "#";
+    });
+
+    // ── Step 2: Password ──
+    const pwInput = document.getElementById("password");
+    const toggleBtn = document.getElementById("toggle-pw");
+    const iconShow = document.getElementById("icon-show");
+    const iconHide = document.getElementById("icon-hide");
+    const pwField = document.getElementById("pw-field");
+    const pwForm = document.getElementById("pw-form");
+
+    toggleBtn.addEventListener("click", function () {
+      const showing = pwInput.type === "text";
+      pwInput.type = showing ? "password" : "text";
+      iconShow.style.display = showing ? "" : "none";
+      iconHide.style.display = showing ? "none" : "";
+      toggleBtn.setAttribute("aria-label", showing ? "Show password" : "Hide password");
+    });
+
+    pwForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const val = pwInput.value;
+
+      if (!val) {
+        pwField.classList.add("error");
+        pwInput.focus();
+        return;
+      }
+
+      // In a real app, you'd submit credentials here.
+      alert("Signed in successfully!");
+    });
+
+    pwInput.addEventListener("input", function () {
+      if (pwInput.value) {
+        pwField.classList.remove("error");
+      }
+    });
+
+    // Back button returns to email step
+    document.getElementById("back-btn").addEventListener("click", function () {
+      showStep("step-email");
+      emailInput.focus();
+    });
+
+    // Account chip also returns to email step
+    document.getElementById("account-chip").addEventListener("click", function () {
+      showStep("step-email");
+      emailInput.focus();
     });
   </script>
 </body>
